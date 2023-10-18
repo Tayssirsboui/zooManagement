@@ -7,12 +7,16 @@ public class Animal {
     private boolean isMammal ;
 
 
-    public Animal(String family, String name, int age, boolean isMammal) {
+    public Animal(String family, String name, int age, boolean isMammal, String habitat) {
         this.family = family;
         this.name = name;
         this.age = age;
         this.isMammal = isMammal;
     }
+
+    public Animal(String family, String name, int age, boolean isMammal) {
+    }
+
     public String getFamily() {
         return family;
     }
@@ -60,6 +64,7 @@ public class Animal {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", isMammal=" + isMammal +
+
                 '}';
     }
 }
