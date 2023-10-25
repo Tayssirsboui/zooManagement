@@ -13,6 +13,12 @@ public class Penguin extends AnimalAquatic {
 
     public Penguin(){}
 
+    @Override
+    public void swim() {
+         System.out.println("This aquatic animal is swimming.");
+
+    }
+
     public Penguin(String family, String name, int age, boolean isMammal, String habitat, float swimmingDepth) {
         super(family, name, age, isMammal, habitat);
         this.swimmingDepth = swimmingDepth;

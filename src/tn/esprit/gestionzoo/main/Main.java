@@ -23,8 +23,8 @@ public class  Main{
 
         Animal dog = new Animal("Canine", "Snoopy", 2, true);
 
-        AnimalAquatic a1 =new AnimalAquatic();
-        a1.setHabitat("mer");
+        //AnimalAquatic a1 =new AnimalAquatic();
+        //a1.setHabitat("mer");
         AnimalTerrestrial a2=new                                                                                                      AnimalTerrestrial();
         a2.setNbrLegs(4);
         Dolphin d=new Dolphin();
@@ -50,18 +50,38 @@ public class  Main{
 
         myZoo2.addAnimal(dog);
         System.out.println(Zoo.comparerZoo(myZoo,myZoo2));
-        AnimalAquatic animalAquatic = new AnimalAquatic("Fish", "Sardine", 2, true, "Sea");
+      //  AnimalAquatic animalAquatic = new AnimalAquatic("Fish", "Sardine", 2, true, "Sea");
         AnimalTerrestrial animalTerrestrial = new AnimalTerrestrial("Panda", "Narla", 4, true, 2);
         Dolphin dolphin = new Dolphin("Delphinidae", "Flipper", 5, true, "Ocean", 14.5f);
         Penguin penguin = new Penguin("Spheniscidae", "Skipper", 3, true, "Ocean", 25.3f);
 
 
-        System.out.println(animalAquatic);
+      //  System.out.println(animalAquatic);
         System.out.println(animalTerrestrial);
         System.out.println(dolphin);
         System.out.println(penguin);
-        animalAquatic.swim();
+      //  animalAquatic.swim();
         dolphin.swim();
         penguin.swim();
+
+        AnimalAquatic[] aquatics = myZoo.getAquaticAnimals();
+        Dolphin d1 = new Dolphin();
+        d1.setSwimmingSpeed(21.8f);
+        Dolphin d2 = new Dolphin();
+        d2.setSwimmingSpeed(20.3f);
+        Penguin p1 = new Penguin();
+        p1.setSwimmingDepth(29.6f);
+        Penguin p2 = new Penguin();
+        p2.setSwimmingDepth(219.6f);
+        myZoo.addAquaticAnimal(d1);
+        myZoo.addAquaticAnimal(d2);
+        myZoo.addAquaticAnimal(p1);
+        myZoo.addAquaticAnimal(p2);
+
+
+
+        myZoo.displayNumberOfAquaticsByType();
+
+        System.out.println(myZoo.maxPenguinSwimmingDepth());
     }
 }
