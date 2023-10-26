@@ -1,7 +1,7 @@
 package tn.esprit.gestionzoo.entities;
 
-import tn.esprit.gestionzoo.InvalidAgeException;
-import tn.esprit.gestionzoo.ZooFullException;
+import tn.esprit.gestionzoo.exceptions.InvalidAgeException;
+import tn.esprit.gestionzoo.exceptions.ZooFullException;
 
 public class Zoo {
 

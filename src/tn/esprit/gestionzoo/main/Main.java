@@ -1,7 +1,7 @@
 package tn.esprit.gestionzoo.main;
 
-import tn.esprit.gestionzoo.InvalidAgeException;
-import tn.esprit.gestionzoo.ZooFullException;
+import tn.esprit.gestionzoo.exceptions.InvalidAgeException;
+import tn.esprit.gestionzoo.exceptions.ZooFullException;
 import tn.esprit.gestionzoo.entities.*;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
