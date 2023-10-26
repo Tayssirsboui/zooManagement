@@ -1,5 +1,8 @@
 package tn.esprit.gestionzoo.entities;
 
+import tn.esprit.gestionzoo.InvalidAgeException;
+import tn.esprit.gestionzoo.ZooFullException;
+
 public class Zoo {
 
     private Animal[] animals;
@@ -7,10 +10,19 @@ public class Zoo {
     private AnimalAquatic[] aquaticAnimals;
     private String name;
     private String city;
-   private final int NBR_CAGES =25;
-   private final int NBR_AQUATIC_ANIMALS=10;
+   public final int NBR_CAGES =3;
+   public final int NBR_AQUATIC_ANIMALS=10;
    private int nbrAnimal=0;
-   private int nbrAnimalsAquatic=0;
+
+    public int getNbrAnimalsAquatic() {
+        return nbrAnimalsAquatic;
+    }
+
+    public void setNbrAnimalsAquatic(int nbrAnimalsAquatic) {
+        this.nbrAnimalsAquatic = nbrAnimalsAquatic;
+    }
+
+    private int nbrAnimalsAquatic=0;
 
     public Zoo (){
 
@@ -58,6 +70,8 @@ public class Zoo {
         this.city = city;
     }
 
+
+
     public void displayZoo(){
         System.out.println("My tn.esprit.gestionzoo.entities.Zoo :");
         System.out.println("Name: " + name + ", City: " + city + ", N° Cages/Animals: " + NBR_CAGES);
@@ -65,18 +79,25 @@ public class Zoo {
     }
 
 
-   public boolean addAnimal(Animal animal) {
-        if (searchAnimal(animal) != -1)
-            return false;
+   public void addAnimal(Animal animal) throws ZooFullException, InvalidAgeException {
+//        if (searchAnimal(animal) != -1)
+//            return false;
         if (!isZooFull()) {
+            if(animal.getAge()<0){
             animals[nbrAnimal] = animal;
             nbrAnimal++;
-            return true;
-        }else
-            return false;
+            } throw new InvalidAgeException("l'animal ne peut pas avoir un age négatif");
+        } else {
+            throw  new ZooFullException("Zoo is full");
+        }
+
+
     }
     public void addAquaticAnimal(AnimalAquatic aquatic){
         if(nbrAnimalsAquatic < NBR_AQUATIC_ANIMALS){
+            if (aquaticAnimals == null) {
+                aquaticAnimals = new AnimalAquatic[NBR_AQUATIC_ANIMALS];
+            }
             aquaticAnimals[nbrAnimalsAquatic]=aquatic;
             nbrAnimalsAquatic++;
         }else
@@ -89,6 +110,11 @@ public class Zoo {
             System.out.println(animals[i]);
         }
     }
+
+    public int getNbrAnimal() {
+        return nbrAnimal;
+    }
+
     public int searchAnimal(Animal animal){
         int index=-1;
         for(int i=0; i<nbrAnimal;i++){
@@ -99,21 +125,25 @@ public class Zoo {
         return index;
     }
     public boolean removeAnimal(Animal animal){
-     int indexAnimal = searchAnimal(animal);
-     if (indexAnimal == -1)
-         return false;
-     for (int i = indexAnimal; i < nbrAnimal; i++) {
-         animals[i] = animals[i + 1];
+         int indexAnimal = searchAnimal(animal);
+         if (indexAnimal == -1)
+             return false;
+         for (int i = indexAnimal; i < nbrAnimal; i++) {
+             animals[i] = animals[i + 1];
 
-     }
-     animals[nbrAnimal] = null;
-     this.nbrAnimal--;
-     return true;
+         }
+         animals[nbrAnimal] = null;
+         this.nbrAnimal--;
+         return true;
  }
 
     public boolean isZooFull() {
         return nbrAnimal == NBR_CAGES;
     }
+
+
+
+
     public static Zoo comparerZoo(Zoo z1, Zoo z2) {
         if (z1.nbrAnimal > z2.nbrAnimal)
             return z1;
@@ -139,7 +169,7 @@ public class Zoo {
         int nbrP = 0;
         int nbrD = 0;
         for (int i = 0; i < nbrAnimalsAquatic; i++) {
-            if (aquaticAnimals[i] instanceof Dolphin) {
+            if (aquaticAnimals[i] instanceof Dolphin) { // ici on n'a pas besoin d'ecrire Dolphin dolphin c'est a dire donner une instance car on n'a pas besoin de lire une valeur depuis l'instance on va utiliser nbD
                 nbrD++;
             }
             if (aquaticAnimals[i] instanceof Penguin) {
